@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,35 +11,100 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
         integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
-    
+
     <link rel="stylesheet" href="public/src/styles/style.css">
+
+    <style>
+
+    </style>
 </head>
-<body>
-    <header class="m-2">
-        <h1 class="border border-2 border-black p-2" align="center">Mini Github User Explorer</h1>
+
+<body class="container-fluid">
+    <header class="mt-2">
+        <h1 class="border border-2 border-black p-2 text-bg-dark fw-bold" align="center">Mini Github User Explorer</h1>
     </header>
 
-    <main class="border border-2 border-black m-2">
+    <main class="border border-2 border-black px-1 d-flex flex-column" style="margin-bottom: 80px;">
         <section class="p-2">
             <form action="" method="get" class="d-flex flex-column align-items-center">
-                <input type="text" name="usrname" id="usrname" placeholder="Enter a Github username (e.g. : the-parvez-16)" class="form-control w-75" value="the-parvez-16">
+                <input type="text" name="usrname" id="usrname"
+                    placeholder="Enter a Github username (e.g. : the-parvez-16)" class="form-control w-75"
+                    value="the-parvez-16">
                 <button type="button" class="w-50 btn btn-primary mt-2" id="search">Search</button>
             </form>
         </section>
 
-        <section class="profile">
+        <section class="profile d-flex justify-content-center">
+            <div class="card m-3" style="max-width: 800px;">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img src="public/images/avatar.jpg" class="img-fluid rounded-start" alt="avatar" id="pfp">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" id="username">the_parvez_16</h5>
+                            <p class="card-text" id="bio">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam, eaque similique earum quis, necessitatibus harum nemo qui quisquam esse atque, voluptates ex ipsum reprehenderit ut nostrum quibusdam omnis nulla laborum?</p>
 
+                            <p class="card-text text-body-secondary">
+                                <svg text="muted" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1"
+                                    width="16" data-view-component="true" class="octicon octicon-people">
+                                    <path
+                                        d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z">
+                                    </path>
+                                </svg>
+                                <small class="text-body-secondary" id="following">followers</small> .
+                                <small class="text-body-secondary" id="followers">following</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="repos">
-            
+        <section class="pe-4">
+             
+            <ul id="repos">
+                <li class="py-4">
+                    <div>
+                        <div>
+                            <h3>
+                                <a href="/the-parvez-16/Mini-Github-User-Explorer">
+                                    Mini-Github-User-Explorer</a>
+                            </h3>
+                        </div>
+
+                        <div>
+                            <p class="">
+                                A lightweight GitHub User Explorer built with vanilla JavaScript that lets users search
+                                profiles and view basic details and latest repositories with proper loading and error
+                                handling.
+                            </p>
+                        </div>
+
+
+                        <div class="mt-2">
+                            <span>
+                                <span class="" style="background-color: #e34c26"></span>
+                                <span id="language">HTML</span>
+                            </span>
+
+                            Updated <span>Feb 1, 2026</span>
+                        </div>
+                    </div>
+                </li>
+                <hr class="w-100">
+            </ul>
         </section>
     </main>
 
-    <footer class="">
-
+    <footer class="d-flex align-items-center flex-column" style="background-color: #0f0f0f;">
+        <hr class="w-100">
+        <p>
+            © All rights reserved to me.
+        </p>
     </footer>
 
     <script src="public/src/scripts/script.js"></script>
 </body>
+
 </html>
