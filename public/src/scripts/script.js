@@ -10,13 +10,30 @@ function getRepositories() {
 }
 
 async function consumeData() {
+    let repoSection = document.getElementById("repoSection");
     let loader = document.getElementById('loader');
+    let errSection = document.getElementById('errSection');
+    errSection.style.display = "none";
     loader.style.display = "flex";
     try {
+
         let pf = await getProfile();
+        if(!pf.ok){
+            let error;
+            if(pf.status=="404"){
+                error = new Error("User Not Found")
+            }else{
+                const errorData = await pf.json();
+                error = new Error(errorData.message || "Unknown Error");
+            }
+            error.status = pf.status;
+            throw error;
+        }
+
         let profile = await pf.json();
 
         let repos = await getRepositories();
+        if (!repos.ok) throw new Error("Could not fetch repositories.");
         let repositories = await repos.json();
 
         fillProfileDetails(profile);
@@ -27,11 +44,18 @@ async function consumeData() {
             ul.appendChild(fillRepository(repo));
             ul.innerHTML += "<hr>";
         });
-        let repoSection = document.getElementById("repoSection");
+
         repoSection.innerHTML = '<h3 class="ps-4" style="text-decoration: underline;">Repositories :</h3>';
         repoSection.appendChild(ul);
         repoSection.style.display = "block";
+
     } catch (err) {
+        document.getElementById("status").textContent = err.status;
+        document.getElementById("errMsg").textContent = err.message;
+
+        errSection.style.display = "block";
+        repoSection.style.display = "none";
+        document.getElementById("profileSection").style.display = "none";
         console.debug(err);
     } finally {
         loader.style.display = "none";
@@ -84,6 +108,5 @@ document.querySelector("#search").addEventListener("click",search);
 
 function search(){
     usrname = document.getElementById("usrname").value;
-    console.log(usrname);
     consumeData();
 }

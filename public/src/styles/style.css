@@ -6,12 +6,9 @@ body {
     padding: 0;
 }
 
-.profile,#repoSection,.loader{display: none;}
+.profile,#repoSection,.loader,#errSection{display: none;}
 
-.repo{
-    display: flex;
-    background-color: #222;
-}
+.repo{display: flex;background-color: #222;}
 
 #language{font-size: 13px;}
 
