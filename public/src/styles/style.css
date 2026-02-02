@@ -6,26 +6,14 @@ body {
     padding: 0;
 }
 
-.profile{
-    display: none;
-}
-
-#repoSection{
-    display: none;
-}
-
-.spinner{
-    display: none;
-}
+.profile,#repoSection,.loader{display: none;}
 
 .repo{
     display: flex;
     background-color: #222;
 }
 
-#language{
-    font-size: 13px;
-}
+#language{font-size: 13px;}
 
 footer {
     position: fixed;

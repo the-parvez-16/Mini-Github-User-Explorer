@@ -10,28 +10,31 @@ function getRepositories() {
 }
 
 async function consumeData() {
+    let loader = document.getElementById('loader');
+    loader.style.display = "flex";
     try {
         let pf = await getProfile();
         let profile = await pf.json();
-        fillProfileDetails(profile);
 
         let repos = await getRepositories();
         let repositories = await repos.json();
 
-        console.log(repositories);
+        fillProfileDetails(profile);
+
         let ul = document.createElement("ul");
 
         repositories.forEach(repo => {
             ul.appendChild(fillRepository(repo));
-            ul.innerHTML+="<hr>";
+            ul.innerHTML += "<hr>";
         });
         let repoSection = document.getElementById("repoSection");
         repoSection.innerHTML = '<h3 class="ps-4" style="text-decoration: underline;">Repositories :</h3>';
         repoSection.appendChild(ul);
         repoSection.style.display = "block";
     } catch (err) {
-
         console.debug(err);
+    } finally {
+        loader.style.display = "none";
     }
 }
 
@@ -40,8 +43,8 @@ function fillProfileDetails(profile) {
     document.querySelector("#pfp").src = profile.avatar_url ? profile.avatar_url : "public/images/avatar.jpg";
     document.querySelector("#username").textContent = profile.name;
     document.querySelector("#bio").textContent = profile.bio;
-    document.querySelector("#followers").textContent = "followers " + profile.followers;
-    document.querySelector("#following").textContent = "following " + profile.following;
+    document.querySelector("#followers").textContent = "followers " + (profile.followers ? profile.followers : 0);
+    document.querySelector("#following").textContent = "following " + (profile.following ? profile.following : 0);
 
     document.getElementById("profileSection").style.display = "flex";
 }
@@ -70,8 +73,17 @@ function fillRepository(repo) {
     return li;
 }
 
-document.querySelector("#search").addEventListener("click", () => {
+document.getElementById("usrname").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        search();
+    }
+});
+
+document.querySelector("#search").addEventListener("click",search);
+
+function search(){
     usrname = document.getElementById("usrname").value;
     console.log(usrname);
     consumeData();
-});
+}
